@@ -1,7 +1,22 @@
 aid: tecost-sa
 name: Tecost SA
-description: 'Tecost SA is a company surfaced via the API Evangelist harvest backlog (source: openehr-coalition)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Tecost SA is a Swiss health-information-technology company, founded in 1997 and
+  based in Fribourg, that designs, develops, implements, hosts and operates
+  clinical information systems for hospitals, clinics, psychiatric and
+  rehabilitation institutions, long-term care facilities and home-care
+  organizations across French- and German-speaking Switzerland. Its product line
+  is the Carefolio suite — Acute, Rehabilitation, Psy, LongTerm, AtHome, Critical
+  Care 3C, Network, Portal, Workshop, AI and the openEHR-based Carefolio DIH Data
+  Integration Hub — alongside consulting, change management, custom development,
+  24/7 maintenance and SaaS operations. Tecost is a named industry partner of the
+  openEHR Foundation and states that it is making openEHR the cornerstone of its
+  clinical-data interoperability. It publishes no public developer portal, API
+  reference or machine-readable contract; Carefolio is delivered as per-customer
+  tenants behind Microsoft Entra ID single sign-on, so any integration contract
+  reaches integrators under a commercial agreement rather than through a public
+  surface.
+image: https://www.tecost.ch/images/logo-tecost.svg
 url: https://raw.githubusercontent.com/api-evangelist/tecost-sa/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:openehr-coalition
@@ -12,6 +27,16 @@ created: '2026-09-02'
 modified: '2026-09-02'
 tags:
 - Company
+- Health
+- Healthcare
+- Electronic Health Records
+- Clinical Information Systems
+- openEHR
+- Interoperability
+- Hospital Software
+- Long-Term Care
+- Home Care
+- Switzerland
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -21,3 +46,48 @@ maintainers:
 common:
 - type: Website
   url: https://www.tecost.ch/
+- type: Blog
+  url: https://www.tecost.ch/fr/actualites
+- type: Support
+  url: https://www.tecost.ch/fr/contact
+- type: PrivacyPolicy
+  url: https://www.tecost.ch/fr/protection-des-donnees
+- type: LinkedIn
+  url: https://www.linkedin.com/company/tecost-sa
+- type: DomainSecurity
+  url: security/tecost-sa-domain-security.yml
+- type: Conformance
+  url: conformance/tecost-sa-conformance.yml
+- type: LLMsTxt
+  url: llms/tecost-sa-llms.txt
+- type: Plans
+  url: plans/tecost-sa-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tecost-sa-rate-limits.yml
+x-enrichment:
+  date: '2026-09-02'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Tecost markets an openEHR-based Data Integration Hub plus HL7 and SOAP
+    integration for the Carefolio suite, but every Carefolio host is
+    customer-only — www.carefolio.ch answers nginx 403 to anonymous requests and
+    tenant hosts such as daler.carefolio.ch redirect to a Microsoft Entra ID
+    SAML sign-in — so no reference, WSDL or openEHR artifact is reachable
+    without an active institutional tenant.
+  evidence:
+  - url: https://www.carefolio.ch/
+    status: 403
+  - url: https://daler.carefolio.ch/
+    status: 200
+  - url: https://www.tecost.ch/.well-known/security.txt
+    status: 403
+  - url: https://www.tecost.ch/openapi.json
+    status: 404
+  - url: https://www.carefolio.ch/rest/openehr/v1/definition/template/adl1.4
+    status: 404
+  checked: '2026-09-02'

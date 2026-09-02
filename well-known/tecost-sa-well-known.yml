@@ -1,0 +1,122 @@
+generated: '2026-09-02'
+method: probed
+source: live HTTP probes of the Tecost SA marketing host and the Carefolio product host
+note: >-
+  No /.well-known/ document is served on any Tecost SA host. On www.tecost.ch the
+  entire /.well-known/ directory is answered by nginx with HTTP 403 Forbidden (a
+  blanket deny rule, not a per-path 404), so even RFC 9116 security.txt is
+  unreachable. On www.carefolio.ch every path returns 404. No WellKnown or
+  SecurityTxt pointer is emitted, because no path returned a real document.
+hosts:
+- host: www.tecost.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+- host: www.carefolio.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+contract_discovery:
+  note: >-
+    STEP 0b contract discovery ran against every host that resolves for this
+    company. No OpenAPI, Swagger, GraphQL, MCP or A2A surface was found.
+  probes:
+  - url: https://www.tecost.ch/openapi.json
+    status: 404
+  - url: https://www.tecost.ch/swagger.json
+    status: 404
+  - url: https://www.tecost.ch/api-docs
+    status: 404
+  - url: https://www.tecost.ch/llms.txt
+    status: 404
+  - url: https://www.tecost.ch/sitemap.xml
+    status: 404
+  - url: https://www.tecost.ch/robots.txt
+    status: 200
+    note: 'User-agent: * / Disallow: (empty) — nothing disallowed'
+  - url: https://www.carefolio.ch/openapi.json
+    status: 404
+  - url: https://www.carefolio.ch/swagger.json
+    status: 404
+  - url: https://www.carefolio.ch/llms.txt
+    status: 404
+  - url: https://www.carefolio.ch/rest/openehr/v1/definition/template/adl1.4
+    status: 404
+    note: openEHR REST API base path probed because Tecost markets an openEHR-based Data Integration Hub
+  - url: https://www.carefolio.ch/
+    status: 403
+    note: nginx 403 after redirect to /test/ — the Carefolio product host serves nothing anonymously
+  - url: https://daler.carefolio.ch/
+    status: 200
+    note: >-
+      Redirects to login.microsoftonline.com SAML sign-in (tenant
+      0754c397-6136-4c1c-b3ab-8b2ced75bad0). Carefolio is deployed as a
+      per-customer tenant behind Microsoft Entra ID; there is no anonymous surface.
+  - url: https://monitoring-api.tecost.ch/
+    status: 403
+    note: 'body: "RBAC: access denied" — internal monitoring API, not a product API'
+  - url: https://witec.tecost.ch/
+    status: 403
+    note: 'body: "RBAC: access denied"'
+  subdomain_enumeration:
+    source: https://crt.sh/?q=%25.tecost.ch
+    found:
+    - monitoring-api.tecost.ch
+    - monitor.tecost.ch
+    - monitoring.tecost.ch
+    - prometheus.tecost.ch
+    - pushgateway.tecost.ch
+    - status.tecost.ch
+    - projectathon.tecost.ch
+    - github.tecost.ch
+    - ghes-proxy.tecost.ch
+    - zenhub.tecost.ch
+    - witec.tecost.ch
+    - office.tecost.ch
+    - siems.tecost.ch
+    - new.tecost.ch
+    - wordpress.tecost.ch
+    note: >-
+      Certificate-transparency history names several internal-tooling hosts
+      (Prometheus, Pushgateway, a GitHub Enterprise Server proxy, ZenHub). Of
+      these only monitoring-api, witec, office and siems still resolve, and each
+      denies anonymous access. status.tecost.ch and projectathon.tecost.ch no
+      longer resolve in DNS, so no public status page exists today.

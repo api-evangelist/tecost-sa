@@ -1,0 +1,20 @@
+generated: '2026-09-02'
+method: searched
+source: https://www.tecost.ch/fr/solutions
+plan_count: 0
+note: >-
+  Tecost SA publishes no pricing of any kind. There is no pricing page, no plan
+  tiers, no quota table and no "contact sales" pricing form — the solution pages
+  end in a demo request and a phone number (+41 26 341 80 30, office@tecost.ch).
+  This is a Swiss clinical-information-system vendor selling implemented,
+  operated hospital software under negotiated institutional contracts, so the
+  absence of published plans is the normal shape of this market rather than a
+  gap in the site. Recorded as an honest zero.
+plans: []
+evidence:
+- url: https://www.tecost.ch/fr/solutions
+  status: 200
+- url: https://www.tecost.ch/fr/services
+  status: 200
+- url: https://www.tecost.ch/fr/contact
+  status: 200

@@ -1,0 +1,18 @@
+generated: '2026-09-02'
+method: searched
+source: https://www.tecost.ch/
+limit_count: 0
+note: >-
+  No rate limits are documented, because no public API is documented. Tecost SA
+  publishes no developer portal, no API reference and no machine-readable
+  contract, so there is no runtime signal — no X-RateLimit-*, no RateLimit-*, no
+  Retry-After — to record. Nothing could be observed on a live response either:
+  the Carefolio product host answers 403 to anonymous requests and tenant
+  instances redirect to Microsoft Entra ID sign-in. An honest zero.
+rate_limits: []
+headers: []
+evidence:
+- url: https://www.carefolio.ch/
+  status: 403
+- url: https://www.tecost.ch/api-docs
+  status: 404

@@ -1,0 +1,89 @@
+generated: '2026-09-02'
+method: searched
+source: https://www.tecost.ch/fr/solutions/carefolio-ehr, https://openehr.org/industry-partners/
+note: >-
+  Tecost SA publishes no machine-readable contract, so every entry below is
+  graded against what the company states on its own public pages and what the
+  standards body itself publishes about them. Nothing here is asserted from a
+  spec, because there is no spec to read. conforms is true only where a standards
+  body's own roster confirms the relationship; a marketing claim alone is
+  recorded with conforms false and said so plainly.
+conformance:
+- id: openehr
+  name: openEHR
+  category: domain-standard
+  conforms: false
+  claimed: true
+  evidence:
+    claim: >-
+      "Convinced of the potential of the openEHR standard, we are making it the
+      cornerstone of the sustainability and interoperability of clinical data,
+      enabling effective, patient-centered collaboration." — Tecost SA's own
+      profile text on the openEHR Foundation industry-partner roster.
+    membership_url: https://openehr.org/industry-partners/
+    membership_status: 200
+    membership_confirmed: true
+    product: >-
+      Carefolio DIH (Data Integration Hub), described by Tecost as an
+      openEHR-based platform for exchanging structured and unstructured health
+      data between providers and the Swiss electronic patient record (DEP/EPD).
+    product_url: https://www.tecost.ch/fr/solutions/carefolio-ehr
+    product_url_status: 200
+    why_not_conformant: >-
+      Membership and a product claim are not conformance. No openEHR artifact is
+      published anywhere Tecost serves — no archetypes, no operational templates,
+      no openEHR REST API base, no CKM contribution reachable from their site.
+      https://www.carefolio.ch/rest/openehr/v1/definition/template/adl1.4 returned
+      404 and the Carefolio host denies anonymous access entirely, so there is no
+      surface against which the claim can be verified.
+- id: hl7v2
+  name: HL7 v2 messaging
+  category: domain-standard
+  conforms: false
+  claimed: true
+  evidence:
+    claim: >-
+      Third-party system communication is described in Tecost product material as
+      handled via HL7, SOAP web services and datagates.
+    why_not_conformant: >-
+      No message-type list, conformance profile, or integration guide is published.
+      Nothing was found to verify against.
+- id: fhir
+  name: HL7 FHIR
+  category: domain-standard
+  conforms: false
+  claimed: false
+  evidence:
+    note: >-
+      No FHIR claim appears on any Tecost page reviewed, and no FHIR CapabilityStatement
+      or /metadata endpoint was found on any host that resolves for the company.
+- id: soap-wsdl
+  name: SOAP / WSDL
+  category: contract
+  conforms: false
+  claimed: true
+  evidence:
+    claim: Tecost product material names SOAP web services as an integration mechanism.
+    why_not_conformant: >-
+      No WSDL is published. ?wsdl and ?singleWsdl were not reachable because every
+      Carefolio host denies anonymous access; any SOAP contract Tecost ships is
+      delivered to customers under contract, not published.
+- id: oauth2
+  name: OAuth 2.0
+  category: cross-cutting
+  conforms: false
+  evidence:
+    note: >-
+      No /.well-known/oauth-authorization-server document is served (403 on
+      www.tecost.ch, 404 on www.carefolio.ch). Carefolio tenants authenticate
+      end users through Microsoft Entra ID SAML 2.0, observed on
+      https://daler.carefolio.ch/ — that is an enterprise SSO deployment for
+      humans, not a documented API authorization surface.
+- id: rfc9116
+  name: RFC 9116 security.txt
+  category: cross-cutting
+  conforms: false
+  evidence:
+    url: https://www.tecost.ch/.well-known/security.txt
+    status: 403
+    note: The whole /.well-known/ directory is denied by nginx, so no security.txt is reachable.

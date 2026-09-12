@@ -1,0 +1,14 @@
+{
+  "repo": "tecost-sa",
+  "feeds": [
+    {
+      "source": "https://www.tecost.ch/",
+      "feed_url": "https://www.tecost.ch/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-06T19:17:18Z"
+}

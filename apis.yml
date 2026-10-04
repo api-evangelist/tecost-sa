@@ -1,5 +1,5 @@
 aid: tecost-sa
-name: Tecost SA
+name: Tecost
 description: >-
   Tecost SA is a Swiss health-information-technology company, founded in 1997 and
   based in Fribourg, that designs, develops, implements, hosts and operates
@@ -91,3 +91,4 @@ x-coverage:
   - url: https://www.carefolio.ch/rest/openehr/v1/definition/template/adl1.4
     status: 404
   checked: '2026-09-02'
+x-legal-name: Tecost SA
